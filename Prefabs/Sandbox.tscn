@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Art/Pixel Game Art/Main/Backgrounds/merged-full-background.png" type="Texture" id=2]
+[ext_resource path="res://Art/Tilemaps/MiniK_Tileset_For_Tiled.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 638.957, 28.5299 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 766.671 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 815.881 )
+
+[sub_resource type="TileSet" id=4]
+0/name = "MiniK_Tileset_For_Tiled.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Sandbox" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 507.968, 334.942 )
+scale = Vector2( 4, 4 )
+z_index = 1
+
+[node name="Envionment" type="Node2D" parent="."]
+
+[node name="Walls" type="Node2D" parent="Envionment"]
+
+[node name="Floor" type="StaticBody2D" parent="Envionment/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Envionment/Walls/Floor"]
+position = Vector2( 513.475, 621.475 )
+shape = SubResource( 1 )
+
+[node name="Left Wall" type="StaticBody2D" parent="Envionment/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Envionment/Walls/Left Wall"]
+position = Vector2( -5.6048, 310.345 )
+shape = SubResource( 2 )
+
+[node name="Right Wall" type="StaticBody2D" parent="Envionment/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Envionment/Walls/Right Wall"]
+position = Vector2( 1026.21, 516.707 )
+shape = SubResource( 3 )
+
+[node name="Background" type="Sprite" parent="Envionment"]
+show_behind_parent = true
+position = Vector2( 511.603, 311.649 )
+scale = Vector2( 2.99862, 2.54755 )
+texture = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 4 )
+format = 1
